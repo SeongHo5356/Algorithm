@@ -19,6 +19,10 @@ int main(void){
 				array[j+1] = temp;
 			}
 		}
+		for(int m =0; m<10;m++){
+			printf("%d ", array[m]);
+		}
+		printf("\n");
 	}
     
      //정렬 후 리스트의 모습
