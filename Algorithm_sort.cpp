@@ -23,10 +23,11 @@ int main(void){
 		Student("LHJ", 95),
 		Student("KMJ", 97),
 		Student("HMS", 91),
-		Student("OHJ", 93)
-	};
-	sort(students, students+5);
-	for(int i =0; i<5; i++){
+		Student("OHJ", 93),
+		Student("CGE", 91)
+		};
+	sort(students, students+6);
+	for(int i =0; i<6; i++){
 		cout << students[i].name << ' ';
 	}
 }
