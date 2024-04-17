@@ -1,6 +1,5 @@
 def solution(wallpaper):
-    x = []
-    y = []
+    x, y = [], []
     for i in range(len(wallpaper)):
         for k in range(len(wallpaper[i])):
             if wallpaper[i][k] == '#':
