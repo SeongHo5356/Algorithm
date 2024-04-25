@@ -1,6 +1,8 @@
-from collections import Counter
-
 def solution(nums):
-    num_counts = Counter(nums)
-    distinct_nums = len(num_counts)
-    return min(distinct_nums,len(nums)//2)
+    lngth = len(set(nums))
+    if lngth >= len(nums)//2:
+        answer = len(nums)//2
+    else:
+        answer = lngth
+
+    return answer
