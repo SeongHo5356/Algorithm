@@ -2,25 +2,26 @@ import sys
 sys.setrecursionlimit(10**6)
 input = sys.stdin.readline
 
-# dfs 함수
-def dfs(graph, v, visited):
-    visited[v] = True
-    for i in graph[v]:
-        if not visited[i]:
-            dfs(graph, i, visited)
+def dfs(arr, i, v):
+    v[i] = 1
+    for j in arr[i]:
+        if v[j] == 0:
+            dfs(arr, j, v)
 
-n, m = map(int, input().split()) # 정점의 개수, 간선의 개수
-graph = [[] for _ in range(n+1)]
-for i in range(m):
-    u, v = map(int, input().split())
-    graph[u].append(v)
-    graph[v].append(u)
+node , edge = map(int, input().split())     # 노드, 엣지 갯수 입력받음
+arr = [[] for _ in range(node+1)]           # n+1 x n+1 배열 생성 , 0번째는 사용하지 않음
+v = [0] * (node+1)             # 각 노드를 방문했는지 확인용 리스트
+cnt = 0                                     # DFS를 몇번 했는지
+for i in range(edge):
+    node1, node2 = map(int, input().split())
+    arr[node1].append(node2)
+    arr[node2].append(node1)
 
-count = 0 # 연결 노드의 수
-visited = [False] * (n+1)
-for i in range(1, n+1):
-    if not visited[i]:
-        dfs(graph, i, visited)
-        count += 1 # dfs 한 번 끝날 때마다 count+1
-
-print(count)
+for i in range(1, node+1):
+    if v[i] == 0:
+        dfs(arr, i, v)
+        cnt += 1            # dfs 끝날때마다 cnt += 1
+        
+print(cnt)
+    
+        
