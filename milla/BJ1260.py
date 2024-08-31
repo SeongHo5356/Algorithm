@@ -3,10 +3,12 @@ import sys
 N, M, V = map(int, input().split())
 
 def makeMatrix(N, M):
-    doc = [0 for _ in range(N)]
+
     # basicMatrix = [doc for _ in range(N)]
-    basicMatrix =[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
-    print(basicMatrix)
+    basicMatrix =[]
+    for i in range(N):
+        basicMatrix.append([0 for j in range(N)])
+
     
     for i in range(M):
         node1, node2 = map(int, input().split())
@@ -17,9 +19,7 @@ def makeMatrix(N, M):
         
     return basicMatrix
 
-a = makeMatrix(N,M)
+makeMatrix(N, M)
 
-print(a)
-    
 
 
