@@ -5,10 +5,19 @@ N, M, V = map(int, input().split())
 
 # basicMatrix = [[0]*N for _ in range(N)]
 def makeMatrix(N, M):
+<<<<<<< HEAD
+
+    # basicMatrix = [doc for _ in range(N)]
+    basicMatrix =[]
+    for i in range(N):
+        basicMatrix.append([0 for j in range(N)])
+
+=======
     # doc = [0 for _ in range(N)]
     # basicMatrix = [doc for _ in range(N)]
     visited = [0 for i in range(N)]
     basicMatrix =[[0]*N for _ in range(N)]
+>>>>>>> b9a237358f007d6506dddb1c76cce111c9a41878
     
     for i in range(M):
         node1, node2 = map(int, input().split())
@@ -17,6 +26,10 @@ def makeMatrix(N, M):
         
     return basicMatrix, visited
 
+<<<<<<< HEAD
+makeMatrix(N, M)
+
+=======
 
 def dfs(basicMatrix, visited, V):
     visited[V-1] = 1
@@ -39,6 +52,7 @@ def bfs(basicMatrix, visited, V):
                 q.append(i + 1)
                 visited[i] = 1 
                 
+>>>>>>> b9a237358f007d6506dddb1c76cce111c9a41878
 
 
 basicMatrix, visited = makeMatrix(N, M)
