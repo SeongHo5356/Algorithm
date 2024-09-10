@@ -8,13 +8,10 @@ mx_wood_length = max(woods)
 def cut_woods(a, woods):
     sum = 0
     for wood in woods:
-        
         if wood - a <= 0:
             continue
         else :
-            
             sum += (wood - a) 
-
     return sum
 
 def bnry_srch(woods, M):
