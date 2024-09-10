@@ -4,39 +4,27 @@ input = sys.stdin.readline
 N,M = map(int, input().split())
 woods = list(map(int, input().split()))
 mx_wood_length = max(woods)
-lengths = [0]*mx_wood_length
 
 def cut_woods(a, woods):
     sum = 0
     for wood in woods:
-        
         if wood - a <= 0:
             continue
         else :
             sum += (wood - a) 
-
     return sum
 
-def bnry_srch(mx_wood_length, woods, M):
-    start, end = 0, mx_wood_length - 1
-    mid = 0
+def binary_search(woods, M):
+    start, end = 0, max_height
+    result = 0
     while start <= end:
-        previous_mid = 0
-        mid = (start + end)//2
-        print("mid :",mid)
-        ans = cut_woods(mid, woods)
-        print("ans :", ans)
-        if ans == M:
-            return 
-        
-        elif ans < M:
-            previous_mid = mid
+        mid = (start + end) // 2
+        if cut_woods(mid, woods) >= M:
+            result = mid
             start = mid + 1
-        elif ans > M:
-            previous_mid = mid 
+        else:
             end = mid - 1
+    return result
 
-
-    return mid
-        
-print(bnry_srch(mx_wood_length, woods, M))
+answer = binary_search(woods, M)
+print(answer)
