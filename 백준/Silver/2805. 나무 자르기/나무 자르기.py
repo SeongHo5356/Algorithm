@@ -1,15 +1,21 @@
 import sys
 input = sys.stdin.readline
 
-N, M = map(int, input().split())
+N,M = map(int, input().split())
 woods = list(map(int, input().split()))
-max_height = max(woods)
+mx_wood_length = max(woods)
 
-def cut_woods(height, woods):
-    return sum(max(0, wood - height) for wood in woods)
+def cut_woods(a, woods):
+    sum = 0
+    for wood in woods:
+        if wood - a <= 0:
+            continue
+        else :
+            sum += (wood - a) 
+    return sum
 
 def binary_search(woods, M):
-    start, end = 0, max_height
+    start, end = 0, mx_wood_length
     result = 0
     while start <= end:
         mid = (start + end) // 2
