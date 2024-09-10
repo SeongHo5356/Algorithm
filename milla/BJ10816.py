@@ -8,15 +8,18 @@ m_lst = map(int, input().split())
 print(n_lst)
 print(m_lst)
 
-def bnry_srch(el, list):
-    cnt = 0
-    start, end = 0, len(list)-1
+def bnry_srch(el, cnt, start, end):
+    while start <= end :
+        mid = (start + end)//2    
+        cnt += 1
+        return
+
+def bnry_srch(el, cnt, start, end):
     while start <= end:
         mid = (start + end) // 2
         if el == list[mid]:
             cnt += 1
-            print(cnt)
-            print("1")
+            start = mid + 1
         elif el < list[mid]:
             start = mid + 1
             print("2")
