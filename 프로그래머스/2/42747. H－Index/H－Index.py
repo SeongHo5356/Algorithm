@@ -10,23 +10,35 @@ def solution_2(citations):
 
     return len(citations) 
 
-def solution_3(citations):
+def solution(citations):
     mx = max(citations)
     ans = 0
-    for i in range(1, mx+1):
+    for i in range(mx+1, 0, -1):
         H_idx = 0
         for citation in citations:
             if citation >= i:
                 H_idx += 1
-        if H_idx == i:
-            if ans <= H_idx:
-                ans = H_idx
+        if H_idx >= i:
+            return i
         
     return ans
 
-def solution(citations):
+def solution_4(citations):
     citations.sort(reverse=True)
     for i, citation in enumerate(citations, 1):
         if citation < i:
             return i - 1
     return len(citations)
+
+def solution_5(citations):
+    mx = max(citations)
+    ans = 0
+    for i in range(mx, 0, -1):  # 변경된 부분: 역순으로 순회
+        H_idx = 0
+        for citation in citations:
+            if citation >= i:
+                H_idx += 1
+        if H_idx == i:  # 변경된 부분: 조건 수정
+            return i  # 변경된 부분: 즉시 반환
+    
+    return ans
