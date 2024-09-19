@@ -3,7 +3,6 @@ def solution(array, commands):
     for i in range(len(commands)):
         new_arry = array[commands[i][0]-1 : commands[i][1]]
         new_arry.sort()
-        N = commands[i][2]
-        trgt = new_arry[N-1]
+        trgt = new_arry[commands[i][2]-1]
         answer.append(trgt)
     return answer
