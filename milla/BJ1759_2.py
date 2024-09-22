@@ -21,7 +21,7 @@ def dfs(lst, s, i):
     if len(lst) < L:
         for j in range(i, len(A_list)):
             #print(lst+[A_list[j]])
-            dfs(lst+A_list[j], s+v[ord(A_list[j])], j+1)
+            dfs(lst+A_list[j], s+v[ord(A_list[j])], j+1)   
 
 dfs('',0,0)
 for an in ans:

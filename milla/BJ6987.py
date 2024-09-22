@@ -2,7 +2,7 @@ from itertools import combinations as cb
 import sys
 
 def dfs(round):
-    #global ans
+    global ans
     # 중단조건
     # 15라운드가 지나고, 승, 무, 패가 모두 0이면 answer = 1
     if round == 15:

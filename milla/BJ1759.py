@@ -1,7 +1,9 @@
 L, C = map(int, input().split())
-lst = list(sorted(input().split()))
+lst = list(sorted(input().split())) #[a,c,i,t,s,w]
 ans = []
+
 v = [0]*128
+
 for ch in "aeiou":
     v[ord(ch)] = 1
 
@@ -16,9 +18,10 @@ def dfs(n, tlst, cnt):
             ans.append(tlst)    
         return
     
-    dfs(n+1, tlst + lst[n], cnt + v[ord(lst[n])])
-    dfs(n+1, tlst, cnt)
+    dfs(n+1, tlst + lst[n] , cnt + v[ord(lst[n])])   # 넣고 다음 을 실행하거나
+    dfs(n+1, tlst, cnt) # 넣지 않고 다음을 실행하거나
 
 dfs(0, "", 0)
+
 for ls in ans:
     print(ls)
