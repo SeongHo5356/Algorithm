@@ -2,25 +2,18 @@ import sys
 input = sys.stdin.readline
 
 N = int(input())
-n_lst = sorted(map(int, input().split()))
+n_lst = sorted(list(map(int, input().split())))
 M = int(input())
-m_lst = map(int, input().split())
-print(n_lst)
-print(m_lst)
+m_lst = list(map(int, input().split()))
 
-def bnry_srch(el, cnt, start, end):
-    while start <= end :
-        mid = (start + end)//2    
-        cnt += 1
-        return
-
-def bnry_srch(el, cnt, start, end):
+def bnry_srch(el, n_lst):
+    start = 0
+    end = len(n_lst)
+    cnt = 0
     while start <= end:
         mid = (start + end) // 2
-        if el == list[mid]:
+        if el <= list[mid]:
             cnt += 1
-            start = mid + 1
-        elif el < list[mid]:
             start = mid + 1
             print("2")
         else :
