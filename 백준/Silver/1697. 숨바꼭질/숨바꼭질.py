@@ -1,26 +1,23 @@
-import sys
-input = sys.stdin.readline
+from collections import deque
 
-ls, ld = map(int, input().split())
+N, K = map(int, input().split())
+v = [0]*(100000*2+1)
 
-## BFS 사용
 def bfs(si, ei):
-    q = []
-    v = [0]*200001
-    q.append(si)
+    q = deque([(si, 0)])
     v[si] = 1
-    
     while q:
-        ci = q.pop(0)
+        ci, cnt = q.popleft()
+        #print("ci:{}, cnt:{}".format(ci, cnt))
         if ci == ei:
-            return v[ci] - 1
-         
-        for di in [ci-1, ci+1,ci*2]:
-            if 0<=di<=200000 and v[di] == 0:
-                v[di] = v[ci] + 1
-                q.append(di) 
-    return -1
+            return cnt
+        
+        for di in (ci*2, ci+1, ci-1):
+            ni = di
+            if 0<=ni<(100000*2+1) and v[ni]==0:
+                v[ni] = 1
+                q.append((ni, cnt+1))
+    
+    return cnt
 
-print(bfs(ls, ld))
-                
-
+print(bfs(N,K))
