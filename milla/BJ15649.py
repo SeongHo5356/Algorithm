@@ -4,7 +4,10 @@
 import sys
 sys.setrecursionlimit(10**6)
 
+# n : 선택된 숫자 개수(길이)
 def dfs(n, lst):
+
+    # 종료조건 호출
     if n == M:
         ans.append(lst)
         return
