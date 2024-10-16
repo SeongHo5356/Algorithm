@@ -1,4 +1,4 @@
--- 코드를 작성해주세요
+-- 코드를 작성해주세요 !!
 WITH FIRST_GEN AS (
     SELECT ID
     FROM ECOLI_DATA
