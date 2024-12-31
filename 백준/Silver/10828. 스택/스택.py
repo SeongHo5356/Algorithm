@@ -1,24 +1,27 @@
-n = int(input())
+import sys
+input = sys.stdin.read
+
+n, *commands = input().splitlines()
 
 stack = []
-for i in range(n):
-    command = input().split()
-    if command[0] == "push":
-        stack.append(int(command[1]))    
-    elif command[0] == "pop":
-        if len(stack) == 0:
-            print(-1)
-        else :
-            print(stack.pop())
-    elif command[0] == "size":
-        print(len(stack))
-    elif command[0] == "empty": 
-        if len(stack) == 0:
-            print(1)
-        else :
-            print(0)
-    elif command[0] == "top":
-        if len(stack) == 0:
-            print(-1)
-        else:
-            print(stack[-1])
+result = []
+
+for command in commands:
+    if command.startswith('push'):
+        _, num = command.split()
+        stack.append(int(num))
+
+    elif command == 'top':
+        result.append(stack[-1] if stack else -1)
+
+    elif command == 'size':
+        result.append(len(stack))
+
+    elif command == 'pop':
+        result.append(stack.pop() if stack else -1)
+
+    elif command == 'empty':
+        result.append(0 if stack else 1)
+
+# 결과를 한 번에 출력
+sys.stdout.write('\n'.join(map(str, result)) + '\n')
