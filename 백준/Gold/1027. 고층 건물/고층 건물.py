@@ -1,20 +1,25 @@
-a=int(input())
-height=list(map(int,input().split()))
-sight=[0  for _ in range(a)]
-for i in range(a-1):
-    maxp = float("-inf")
-    minp = float("-inf")
-    for j in range(i+1,a):
-        pivot=(height[j]-height[i])/(j-i)
-        if pivot>=0.0:
-            if pivot>maxp:
-                sight[i]+=1
-                sight[j]+=1
-                maxp=pivot
-        if pivot<0.0:
-            if pivot>minp:
-                if maxp<0:
-                    sight[i] += 1
-                    sight[j] += 1
-                    minp = pivot
-print(max(sight))
+import sys; input = sys.stdin.readline
+
+def is_visible(i, j):
+    slope = (lst[j] - lst[i]) / (j - i)
+    y_intercept = lst[i] - i * slope
+
+    for k in range(i + 1, j):
+        if slope * k + y_intercept <= lst[k]:
+            return False
+
+    return True
+
+
+N = int(input())
+lst = list(map(int, input().split()))
+
+count = [0] * N
+
+for i in range(N - 1):
+    for j in range(i + 1, N):
+        if is_visible(i, j):
+            count[i] += 1
+            count[j] += 1
+
+print(max(count))
