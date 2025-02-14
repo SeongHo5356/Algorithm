@@ -1,25 +1,36 @@
-import sys; input = sys.stdin.readline
+import sys
 
-def is_visible(i, j):
-    slope = (lst[j] - lst[i]) / (j - i)
-    y_intercept = lst[i] - i * slope
+N = int(sys.stdin.readline())
 
-    for k in range(i + 1, j):
-        if slope * k + y_intercept <= lst[k]:
-            return False
+buildings = list(map(int, sys.stdin.readline().split()))
+count = 0
+INF = int(1e9)
 
-    return True
+for i in range(N):
+    x1, y1 = i, buildings[i]
+    cnt = 0
+    prev = -INF
 
-
-N = int(input())
-lst = list(map(int, input().split()))
-
-count = [0] * N
-
-for i in range(N - 1):
     for j in range(i + 1, N):
-        if is_visible(i, j):
-            count[i] += 1
-            count[j] += 1
+        x2, y2 = j, buildings[j]
 
-print(max(count))
+        slope = (y2 - y1) / (x2 - x1)
+
+        if slope > prev:
+            cnt += 1
+            prev = slope
+
+    prev = INF
+    
+    for k in range(i - 1, -1, -1):
+        x3, y3 = k, buildings[k]
+
+        slope = (y1 - y3) / (x1 - x3)
+
+        if slope < prev:
+            cnt += 1
+            prev = slope
+
+    count = max(count, cnt)
+
+print(count)
