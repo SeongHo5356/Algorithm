@@ -1,16 +1,18 @@
-from collections import deque
+def josephus_problem(n, k):
+    people = list(range(1, n + 1))  # List of people from 1 to n
+    result = []  # To store the removal order
+    index = 0  # Start index
+    
+    while people:
+        index = (index + k - 1) % len(people)  # Find the index of the next person to remove
+        result.append(people.pop(index))  # Remove the person and append to result
+    
+    # Format the output as specified
+    return "<" + ", ".join(map(str, result)) + ">"
 
-N, K = map(int, input().split())
-
-circle = deque()
-answer = []
-
-for i in range(N):
-    circle.append(i+1)
-
-while circle:
-    circle.rotate(1-K)
-    popNum = circle.popleft()
-    answer.append(popNum)
-
-print(str(answer).replace('[', '<').replace(']', '>'))
+# Input handling
+n, k = map(int, input().split())
+# Calculate the result
+output = josephus_problem(n, k)
+# Print the result
+print(output)
