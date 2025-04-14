@@ -14,12 +14,13 @@ def solution(genres, plays):
             dict_count[genres[i]] = plays[i]
     
     dict_count = sorted(dict_count.items(), key=lambda x: -x[1])
-    for key in dict_count :
+    for key, value in dict_count :
+        print(key)
+        print(value)
         cnt = 0
         for tp in temp:
-            if tp[0] == key[0] and cnt <= 1:
+            if tp[0] == key and cnt <= 1:
                 answer.append(tp[2])
                 cnt += 1
-    print(answer)
     
     return answer
