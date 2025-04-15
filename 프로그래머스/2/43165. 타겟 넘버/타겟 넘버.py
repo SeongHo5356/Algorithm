@@ -1,6 +1,6 @@
 from collections import deque
 
-def solution(numbers, target):
+def solution_1(numbers, target):
     # 아직 전체 합이 0이고, 돈 횟수 0 
     q = deque([(0, 0)]) 
     cnt = 0
@@ -11,6 +11,8 @@ def solution(numbers, target):
             q.append((cur+numbers[i],itr+1))
             q.append((cur-numbers[i],itr+1))
             
+    
+    print(q)
     for node1, node2 in q:
         if node1 == target and node2 == len(numbers):
             cnt += 1
@@ -18,6 +20,37 @@ def solution(numbers, target):
     
     return cnt 
 
-# 테스트
-print(solution([1, 1, 1, 1, 1], 3))  # 5를 출력해야 함
-print(solution([4, 1, 2, 1], 4))     # 2를 출력해야 함
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def DFS(numbers, target, depth):
+    answer = 0
+    if depth == len(numbers):
+        if sum(numbers) == target : 
+            return 1
+        else :
+            return 0
+    else:
+        answer += DFS(numbers, target, depth+1)
+        numbers[depth] *= -1
+        answer += DFS(numbers, target, depth+1)
+    
+    return answer
+        
+def solution(numbers, target):
+    answer = DFS(numbers, target, 0)
+    return answer
+    
+    
