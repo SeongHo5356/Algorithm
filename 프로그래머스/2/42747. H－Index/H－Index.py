@@ -10,7 +10,7 @@ def solution_2(citations):
 
     return len(citations) 
 
-def solution(citations):
+def solution_1(citations):
     mx = max(citations)
     ans = 0
     for i in range(mx+1, 0, -1):
@@ -42,3 +42,26 @@ def solution_5(citations):
             return i  # 변경된 부분: 즉시 반환
     
     return ans
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def solution(citations):
+    citations.sort(reverse=True)
+    for i in range(len(citations)):
+        if citations[i] < i+1:
+            return i
+    return len(citations)
