@@ -13,7 +13,7 @@ def cpr(a, b):
     else:
         return False
 
-def solution(begin, target, words):
+def solution_1(begin, target, words):
     if target not in words:
         return 0
     
@@ -34,3 +34,45 @@ def solution(begin, target, words):
     dfs(begin, target, words, 0)
     
     return min_steps[0] if min_steps[0] != float('inf') else 0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+from collections import deque
+
+def solution(begin, target, words):
+    if target not in words:
+        return 0
+    
+    q = deque()
+    q.append([begin, 0])
+    
+    while q:
+        now, step = q.popleft()
+        
+        if now == target:
+            return step
+    
+        else :
+            for word in words: 
+                count = 0
+                for i in range(len(word)):
+                    if word[i] != now[i]:
+                        count += 1
+                if count == 1:
+                    q.append([word, step + 1])
+    return 0
+                            
+    
