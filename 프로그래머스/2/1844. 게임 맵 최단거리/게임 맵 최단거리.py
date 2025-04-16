@@ -3,7 +3,7 @@ sys.setrecursionlimit(10**6)
 ans = 0
 
 # dfs 로 시도했지만, 효율성 테스트 케이스에서 모두 시간초과가 남
-def solution_2(maps): 
+def solution_dfs(maps): 
     global ans
     row, col =  len(maps), len(maps[0])
     ans = col*row + 1
@@ -42,7 +42,7 @@ def solution_2(maps):
 from collections import deque
 
 # 최단경로 탐색의 경우 bfs가 무조건 더 나음
-def solution(maps):
+def solution_bfs(maps):
     row, col = len(maps), len(maps[0])
     v = [[0]*col for _ in range(row)]
     
@@ -64,3 +64,44 @@ def solution(maps):
                 q.append((ni,nj,dist+1))
     
     return -1
+
+
+
+
+
+
+
+def solution(maps):
+    n = len(maps)       # 행의 수
+    m = len(maps[0])    # 열의 수
+    queue = [[0, 0, 1]]
+    visited = [[False for _ in range(m)] for _ in range(n)]
+    visited[0][0] = True
+    
+    while queue:
+        cx, cy, dist = queue.pop(0)
+        
+        # 도착지점 검사 (최하단 오른쪽 좌표)
+        if cx == n - 1 and cy == m - 1:
+            return dist
+        
+        for dx, dy in [[-1, 0], [1, 0], [0, 1], [0, -1]]:
+            nx, ny = cx + dx, cy + dy
+            if 0 <= nx < n and 0 <= ny < m:
+                if maps[nx][ny] == 1 and not visited[nx][ny]:
+                    visited[nx][ny] = True
+                    queue.append([nx, ny, dist + 1])
+    
+    return -1
+
+    
+
+
+
+
+
+
+
+
+
+
