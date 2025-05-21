@@ -1,48 +1,36 @@
-import sys 
+import sys
 input = sys.stdin.readline
 
-N, M, V = map(int, input().split())
+N,M,V = map(int, input().split())
+Graph = [[0] * (N+1) for _ in range(N+1)]
+Visited = [0] * (N+1)
 
-# basicMatrix = [[0]*N for _ in range(N)]
-def makeMatrix(N, M):
-    # doc = [0 for _ in range(N)]
-    # basicMatrix = [doc for _ in range(N)]
-    visited = [0 for i in range(N)]
-    basicMatrix =[[0]*N for _ in range(N)]
-    
-    for i in range(M):
-        node1, node2 = map(int, input().split())
-        basicMatrix[node1-1][node2-1] = 1
-        basicMatrix[node2-1][node1-1] = 1
-        
-    return basicMatrix, visited
+for i in range(M):
+    dx, dy = map(int, input().split())
+    Graph[dy][dx] = 1
+    Graph[dx][dy] = 1
 
-
-def dfs(basicMatrix, visited, V):
-    visited[V-1] = 1
-    print(V, end = ' ')
-    
-    for i in range(len(visited)):
-        if visited[i] == 0 and basicMatrix[V-1][i] == 1:
-            dfs(basicMatrix, visited, i+1)
-    
-    
-def bfs(basicMatrix, visited, V):
-    q = []    
-    q.append(V)
-    visited[V-1] = 1
+def bfs(N, V, Graph, Visited):
+    q = [V]
+    Visited[V] = 1
     while q:
-        out = q.pop(0)
-        print(out , end = ' ')
-        for i in range(len(basicMatrix[out-1])):
-            if basicMatrix[out-1][i] == 1 and visited[i] == 0:
-                q.append(i + 1)
-                visited[i] = 1 
-                
+        cur = q.pop(0)
+        print(cur, end = ' ')
+        for i in range(1, N+1):
+            if (Graph[cur][i] == 1 and Visited[i] != 1):
+                q.append(i)
+                Visited[i] = 1
 
 
-basicMatrix, visited = makeMatrix(N, M)
-dfs(basicMatrix, visited, V)
-visited = [0 for i in range(N)]
+def dfs(N, V, Graph, Visited):
+    Visited[V] = 1
+    print(V, end = ' ')
+
+    for i in range(1, N + 1):
+        if Visited[i] == 0 and Graph[V][i] == 1:
+            dfs(N, i, Graph, Visited)
+
+
+dfs(N, V, Graph, Visited[:])
 print()
-bfs(basicMatrix, visited, V)
+bfs(N, V, Graph, Visited[:])
