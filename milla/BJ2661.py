@@ -1,12 +1,7 @@
 def back_tracking(idx):
     #1
     for i in range(1,(idx//2) +1):
-        print(s)
-        print("1. " , s[-i:])
-        print("2. " , s[-2 * i:-i])
-        print()
-        if s[-i:] == s[-2 * i:-i]: 
-            print("안좋은 순열")
+        if s[-i:] == s[-2 * i:-i]:
             return -1
     
     if idx == n:
