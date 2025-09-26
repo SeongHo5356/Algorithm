@@ -1,4 +1,4 @@
-def solution(genres, plays):
+def solution_before(genres, plays):
     answer = []    
     # [장르, 재생횟수, 고유 번호] 리스트
     temp = [[genres[i], plays[i], i] for i in range(len(genres))]
@@ -15,8 +15,6 @@ def solution(genres, plays):
     
     dict_count = sorted(dict_count.items(), key=lambda x: -x[1])
     for key, value in dict_count :
-        print(key)
-        print(value)
         cnt = 0
         for tp in temp:
             if tp[0] == key and cnt <= 1:
@@ -24,3 +22,27 @@ def solution(genres, plays):
                 cnt += 1
     
     return answer
+
+
+def solution(genres, plays):
+    answer = []
+    songs = [[genres[i], plays[i], i] for i in range(len(plays))]
+    songs.sort(key = lambda x:(x[0], -x[1], x[2]))
+        
+    dict_count = {}
+    for genre, play, num in songs:
+        if genre in dict_count:
+            dict_count[genre] += play
+        else:
+            dict_count[genre] = play
+    sorted_items = sorted(dict_count.items(), key=lambda x: -x[1])
+    
+    for key, value in sorted_items:
+        cnt = 0
+        for genre, play, num in songs:
+            if genre == key and cnt < 2:
+                answer.append(num)
+                cnt += 1
+    return answer
+        
+    
