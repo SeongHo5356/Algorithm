@@ -1,6 +1,6 @@
 from collections import deque
 
-def solution(tickets):
+def solution_1(tickets):
     v = [0]*len(tickets)
     tickets.sort()
     #tickets.sort(key=lambda x: (x[0], x[1]))
@@ -24,4 +24,44 @@ def solution(tickets):
     
     return []
 
-#solution([["ICN", "JFK"], ["HND", "IAD"], ["JFK", "HND"]])
+
+def solution_2(tickets):
+    # tickets_sorted = sorted(tickets, key = lambda x:(x[0], x[1]))
+    tickets.sort(key = lambda x:(x[0], x[1]))
+    path = []
+    q = [["ICN", path]]
+         
+    while q:
+        depart, path = q.pop(0)
+        
+        if len(path) == len(tickets) + 1:
+            return path
+        
+        for dep, des in tickets:
+            if depart == dep and des not in path:
+                q.append([des, path.append(des)])
+        print(q)
+                
+    
+from collections import deque
+
+def solution(tickets):
+    visited = [0] * len(tickets)
+    tickets.sort(key = lambda x:(x[0], x[1]))
+    queue = [[["ICN"], visited]]
+    
+    while queue:
+        pth, visited = queue.pop(0)
+        
+        if len(pth) == len(tickets) + 1:
+            return pth
+        
+        for i in range(len(tickets)):
+            if visited[i] == 0 and tickets[i][0] == pth[-1]:
+                nxt_visited = visited[:]
+                nxt_visited[i] = 1
+                queue.append([pth + [tickets[i][1]], nxt_visited])
+                
+        
+        
+    
