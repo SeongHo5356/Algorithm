@@ -36,23 +36,9 @@ def solution_1(begin, target, words):
     return min_steps[0] if min_steps[0] != float('inf') else 0
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 from collections import deque
 
-def solution(begin, target, words):
+def solution_bfs(begin, target, words):
     if target not in words:
         return 0
     
@@ -74,5 +60,28 @@ def solution(begin, target, words):
                 if count == 1:
                     q.append([word, step + 1])
     return 0
-                            
+                 
+def solution(begin, target, words):
+    if target not in words:
+        return 0
+    
+    queue = deque()
+    queue.append([begin, 0])
+    
+    while queue:
+        cur, cnt = queue.popleft()
+        
+        if cur == target:
+            return cnt
+        
+        else:
+            for word in words:
+                sim = 0
+                for i in range(len(word)):
+                    if cur[i] != word[i]:
+                        sim += 1
+                if sim == 1:
+                    queue.append([word, cnt + 1])
+    return 0
+        
     
