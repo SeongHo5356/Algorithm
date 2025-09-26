@@ -49,7 +49,7 @@ def dfs(n, computers, now, visited):
             dfs(n, computers, i, visited)
 '''
 
-
+'''
 def solution(n, computers):
     answer = 0
     visited = [False for _ in range(n)]
@@ -72,4 +72,22 @@ def bfs(n, computers, now, visited):
         for i in range(n):
             if i != com and visited[i] == False and computers[com][i] == 1:
                 queue.append(i)
-        
+'''
+
+def solution(n, computers):
+    visited = [0] * (n)
+    ans = 0
+    
+    for i in range(n):
+        if visited[i] == 0:
+            ans += 1
+            queue = []
+            queue.append(i)
+            
+            while queue:
+                cur = queue.pop(0)
+                visited[cur] = 1
+                for j in range(n):
+                    if computers[cur][j] == 1 and visited[j] == 0:
+                        queue.append(j)
+    return ans
