@@ -61,7 +61,7 @@ def solution_bfs(begin, target, words):
                     q.append([word, step + 1])
     return 0
                  
-def solution(begin, target, words):
+def solution_1016(begin, target, words):
     if target not in words:
         return 0
     
@@ -83,5 +83,31 @@ def solution(begin, target, words):
                 if sim == 1:
                     queue.append([word, cnt + 1])
     return 0
+
+def transPossibility(subject, object):
+    cnt = 0 
+    for i in range(len(subject)):
+        if subject[i] != object[i]:
+            cnt += 1
+    if cnt == 1:
+        return True
+    else:
+        return False
+    
+def solution(begin, target, words):
+    if target not in words:
+        return 0
+    
+    queue = deque()
+    queue.append([begin, 0])
+    while queue:
+        cur, cnt = queue.popleft()
         
+        if cur == target:
+            return cnt
+        
+        for word in words:
+            if transPossibility(word, cur):
+                queue.append([word, cnt + 1])
+    return 0
     
