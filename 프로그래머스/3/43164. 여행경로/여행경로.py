@@ -45,7 +45,7 @@ def solution_2(tickets):
     
 from collections import deque
 
-def solution(tickets):
+def solution_1016(tickets):
     visited = [0] * len(tickets)
     tickets.sort(key = lambda x:(x[0], x[1]))
     queue = [[["ICN"], visited]]
@@ -62,6 +62,57 @@ def solution(tickets):
                 nxt_visited[i] = 1
                 queue.append([pth + [tickets[i][1]], nxt_visited])
                 
+
+                
+                
+                
+
+                
+                
+                
+                
+                
+                
+def solution_1016(tickets):
+    visited = [0] * len(tickets)
+    tickets.sort(key = lambda x:(x[0], x[1]))
+    queue = [[["ICN"], visited]]
+    
+    while queue:
+        pth, visited = queue.pop(0)
         
+        if len(pth) == len(tickets) + 1:
+            return pth
+        
+        for i in range(len(tickets)):
+            if visited[i] == 0 and tickets[i][0] == pth[-1]:
+                nxt_visited = visited[:]
+                nxt_visited[i] = 1
+                queue.append([pth + [tickets[i][1]], nxt_visited])
+                
+                
+                
+                
+def solution(tickets):
+    tickets.sort(key = lambda x:(x[0], x[1]))
+    visited = [0] * len(tickets)
+    queue = [[["ICN"], visited]]
+    
+    while queue:
+        pth, visited = queue.pop(0)
+        
+        if len(pth) == len(tickets) + 1:
+            return pth
+        
+        for i in range(len(tickets)):
+            if(visited[i] == 0 and tickets[i][0] == pth[-1]):
+                nxt_visited = visited[:]
+                nxt_visited[i] = 1
+                queue.append([pth + [tickets[i][1]], nxt_visited])
+                
+                
+        
+    
+    
         
     
