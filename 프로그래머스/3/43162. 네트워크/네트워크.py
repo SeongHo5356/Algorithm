@@ -74,7 +74,7 @@ def bfs(n, computers, now, visited):
                 queue.append(i)
 '''
 
-def solution(n, computers):
+def solution_bfs_0926(n, computers):
     visited = [0] * (n)
     ans = 0
     
@@ -91,3 +91,51 @@ def solution(n, computers):
                     if computers[cur][j] == 1 and visited[j] == 0:
                         queue.append(j)
     return ans
+
+def solution_1016(n, computers):
+    ans = 0
+    visited = [0] * n
+    
+    for i in range(n):
+        if visited[i] == 0:
+            dfs(n, computers, visited, i)
+            ans += 1
+    return ans
+
+def dfs(n, computers, visited, cur):
+    visited[cur] = 1
+    for nxt in range(n):
+        if visited[nxt] == 0 and computers[cur][nxt] == 1:
+            dfs(n, computers, visited, nxt)
+
+            
+            
+
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+def solution(n, computers):
+    visited = [0] * n
+    cnt = 0
+    for i in range(n):
+        if (visited[i] == 0):
+            dfs_1017(computers, visited, i, n)
+            cnt += 1
+    return cnt
+
+def dfs_1017(computers, visited, cur, n):
+    visited[cur] = 1
+    for i in range(n):
+        if (visited[i] == 0 and computers[cur][i] == 1):
+            visited[i] = 1
+            dfs_1017(computers, visited, i, n)
+
