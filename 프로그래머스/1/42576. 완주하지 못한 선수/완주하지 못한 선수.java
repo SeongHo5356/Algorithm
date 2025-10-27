@@ -1,6 +1,6 @@
 import java.util.HashMap;
 
-class Solution {
+class Solution_Hash_1026 {
     public String solution(String[] participant, String[] completion) {     
         String answer = "";
         
@@ -22,6 +22,30 @@ class Solution {
         
         for (String key : map.keySet()){
             if (map.get(key) != 0 ){
+                return key;
+            }
+        }
+        
+        return answer;
+    }
+}
+
+class Solution{
+    public String solution(String[] participant, String[] completion) {     
+        String answer = "";
+        
+        HashMap<String, Integer> hash = new HashMap<>();
+        
+        for (String p: participant){
+            hash.put(p, hash.getOrDefault(p,0) + 1);
+        }
+        
+        for (String c : completion){
+            hash.put(c, hash.get(c) - 1);
+        }
+        
+        for (String key : hash.keySet()){
+            if (hash.get(key) != 0 ){
                 return key;
             }
         }
