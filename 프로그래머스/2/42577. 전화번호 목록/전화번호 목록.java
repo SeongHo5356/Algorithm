@@ -1,7 +1,7 @@
 import java.util.HashSet;
 import java.util.Set;
     
-class Solution {
+class Solution_1026 {
     public boolean solution(String[] phone_book) {
         boolean answer = true;
         
@@ -22,6 +22,28 @@ class Solution {
                 }
             }
         }
+        return answer;
+    }
+}
+
+class Solution {
+    public boolean solution(String[] phone_book) {
+        boolean answer = true;
+        
+        HashSet<String> set = new HashSet<>();
+        
+        for(String number: phone_book){
+            set.add(number);
+        }
+        
+        for(String phone:phone_book){
+            for(int i=1; i<phone.length(); i++){
+                if(set.contains(phone.substring(0,i))){
+                    answer = false;
+                }
+            }
+        }
+        
         return answer;
     }
 }
