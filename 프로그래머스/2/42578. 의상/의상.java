@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class Solution_1026 {
     public int solution(String[][] clothes) {
         int answer = 1;
         Map<String, Integer> map = new HashMap<>();
@@ -15,6 +15,23 @@ class Solution {
         }
         
         // 아무것도 안 입는 경우 제외
+        return answer - 1;
+    }
+}
+
+class Solution {
+    public int solution(String[][] clothes) {
+        int answer = 1;
+        
+        HashMap<String, Integer> hash = new HashMap<>();
+        for (String[] cloth:clothes){
+            hash.put(cloth[1], hash.getOrDefault(cloth[1],0) + 1);
+        }
+        
+        for (int count : hash.values()){
+            answer *= (count+1);
+        }
+        
         return answer - 1;
     }
 }
