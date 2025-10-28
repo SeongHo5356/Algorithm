@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class Solution_1026 {
     public int[] solution(String[] genres, int[] plays) {
         
         // 1. 장르별 총 재생 수 
@@ -50,5 +50,45 @@ class Solution {
 
         // 6. 리스트를 배열로 변환 후 반환
         return result.stream().mapToInt(i -> i).toArray();
+    }
+}
+
+class Solution {
+    public int[] solution(String[] genres, int[] plays) {
+        HashMap<String, Integer> genreCount = new HashMap<>();
+        for(int i=0; i<genres.length; i++){
+            genreCount.put(genres[i], genreCount.getOrDefault(genres[i], 0) + plays[i]);
+        }
+        
+        List<String> genreSort = new ArrayList<>(genreCount.keySet());
+        genreSort.sort((a, b) -> genreCount.get(b) - genreCount.get(a));
+        
+        Map<String, Map<Integer, Integer>> genreList = new HashMap<>();
+        for(int i=0; i<genres.length; i++){
+            genreList.putIfAbsent(genres[i], new HashMap<>());
+            genreList.get(genres[i]).put(i, plays[i]);
+        }
+        
+        List<Integer> answer = new ArrayList<>();
+        
+        for (String genre:genreSort){
+            Map<Integer, Integer> songMap = genreList.get(genre);
+            List<Map.Entry<Integer, Integer>> songList = new ArrayList<>(songMap.entrySet());
+            songList.sort((a, b) -> {
+                if (a.getValue().equals(b.getValue())){
+                    return a.getKey() - b.getKey();
+                }
+                return b.getValue() - a.getValue();
+            });
+            
+            int count = 0;
+            for (Map.Entry<Integer, Integer> entry : songList){
+                answer.add(entry.getKey());
+                count++;
+                if (count == 2) break;
+            }
+        }
+        
+        return answer.stream().mapToInt(i -> i).toArray();
     }
 }
