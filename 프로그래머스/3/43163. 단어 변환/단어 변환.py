@@ -94,7 +94,7 @@ def transPossibility(subject, object):
     else:
         return False
     
-def solution(begin, target, words):
+def solution_1107(begin, target, words):
     if target not in words:
         return 0
     
@@ -110,4 +110,21 @@ def solution(begin, target, words):
             if transPossibility(word, cur):
                 queue.append([word, cnt + 1])
     return 0
+
+def solution(begin, target, words):
+    if target not in words:
+        return 0
     
+    queue = deque()
+    queue.append([begin, 0])
+    
+    while queue:
+        cur = queue.popleft()   
+        if cur[0] == target:
+            return cur[1]
+        
+        for word in words:
+            if transPossibility(cur[0], word):
+                queue.append([word ,cur[1] + 1])
+        
+        
